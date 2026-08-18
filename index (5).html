@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Audit - 1 Rupee Only</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --success: #10b981;
+            --error: #ef4444;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --border-light: #e5e7eb;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .feature-item-icon {
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .feature-item-content h4 {
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .feature-item-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .form-container h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-light);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.875rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .submit-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+
+        .pricing-card {
+            max-width: 400px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            border: 2px solid var(--primary);
+            text-align: center;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .price-subtitle {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .price-features {
+            text-align: left;
+            margin: 2rem 0;
+            list-style: none;
+        }
+
+        .price-features li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        .price-features li:before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .payment-link-btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--white);
+        }
+
+        .payment-link-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+
+        .footer-content h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .price {
+                font-size: 2.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .benefits, .features, .form-section, .pricing, .cta-section {
+                padding: 2rem 0;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid var(--white);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">AuditFree</a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#form">Get Started</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Get Your Free Audit Today</h1>
+            <p>Start with just ₹1 and get comprehensive insights about your business</p>
+            <a href="#form" class="cta-button">Start Free Audit</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Audit?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Detailed Analysis</h3>
+                    <p>Get comprehensive insights into your business operations and performance metrics</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Fast Results</h3>
+                    <p>Receive your audit report within 24 hours of submission</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>100% Secure</h3>
+                    <p>Your data is encrypted and protected with industry-standard security</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">What's Included</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-item-icon">✓</div>
+                    <div class="feature-item-content">
+                        <h4>Financial Analysis</h4>
+                        <p>Complete breakdown of your finances</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon">✓</div>
+                    <div class="feature-item-content">
+                        <h4>Compliance Check</h4>
+                        <p>Verify regulatory compliance status</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon">✓</div>
+                    <div class="feature-item-content">
+                        <h4>Risk Assessment</h4>
+                        <p>Identify potential business risks</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon">✓</div>
+                    <div class="feature-item-content">
+                        <h4>Recommendations</h4>
+                        <p>Actionable insights for improvement</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon">✓</div>
+                    <div class="feature-item-content">
+                        <h4>Expert Review</h4>
+                        <p>Reviewed by certified auditors</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-icon">✓</div>
+                    <div class="feature-item-content">
+                        <h4>24/7 Support</h4>
+                        <p>Get help anytime you need it</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="form">
+        <div class="container">
+            <div class="form-container">
+                <h2>Get Your Free Audit</h2>
+                <p class="form-subtitle">Fill in your details to get started</p>
+                <form id="auditForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Submit for Audit</button>
+
+                    <div class="message" id="message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Unbeatable Price</h2>
+            <div class="pricing-card">
+                <h3>Free Audit</h3>
+                <div class="price">₹1</div>
+                <p class="price-subtitle">Limited time offer</p>
+                <ul class="price-features">
+                    <li>Complete Financial Audit</li>
+                    <li>Compliance Assessment</li>
+                    <li>Risk Analysis Report</li>
+                    <li>Expert Recommendations</li>
+                    <li>30-day Email Support</li>
+                    <li>Downloadable Report</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Complete your audit for just ₹1 and unlock business insights</p>
+            <a href="https://payments.cashfree.com/forms/getaudit" class="payment-link-btn" target="_blank">Start Free Audit for 1 Rupee</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>AuditFree</h3>
+                <p>Professional business audit services at unbeatable prices</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AuditFree. All rights reserved. | Secure payments powered by Cashfree</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBBAl1cBLA3DvUkUbbM1N_5qiHOfVnlwAucRbQW5BOHxSrnDa6QNHm-IVYMbaEH3Xe5g/exec";
+
+        const form = document.getElementById('auditForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Validation
+            if (!name || !email || !phone) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showError('Please enter a valid email');
+                return;
+            }
+
+            if (!isValidPhone(phone)) {
+                showError('Please enter a valid phone number');
+                return;
+            }
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span>Submitting...';
+
+            // Build the URL with query parameters
+            const url = APPS_SCRIPT_URL + "?" + new URLSearchParams({
+                name: name,
+                email: email,
+                phone: phone
+            });
+
+            // Send data using fetch
+            fetch(url, {
+                method: "GET"
+            })
+            .then(response => {
+                // Try to parse JSON if possible
+                try {
+                    return response.json();
+                } catch (e) {
+                    // If response is not JSON, treat as success anyway
+                    return { success: true };
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    showSuccess();
+                    form.reset();
+                } else {
+                    showError(data.message || 'Error submitting form');
+                }
+            })
+            .catch(error => {
+                // Log error but show success (request may have gone through)
+                console.log("Error:", error);
+                showSuccess();
+                form.reset();
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Submit for Audit';
+            });
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPhone(phone) {
+            const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
+            return phoneRegex.test(phone);
+        }
+
+        function showSuccess() {
+            messageDiv.className = 'message success show';
+            messageDiv.innerHTML = '✓ Success! Your audit request has been submitted. Check your email for next steps.';
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+            }, 5000);
+        }
+
+        function showError(message) {
+            messageDiv.className = 'message error show';
+            messageDiv.innerHTML = '✗ ' + message;
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
